@@ -2,17 +2,21 @@ package deck;
 import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 public class Shuffles {
+
+    static RandomGenerator gen = RandomGenerator.getDefault();
+
     public static void main(String[] args) {
         ArrayList<Integer> nums = new ArrayList<>();
-        RandomGenerator gen = RandomGenerator.getDefault();
+        
         for(int i = 0; i < 10; i++){
-            nums.add(gen.nextInt(1, 9));
+            nums.add(i);
         }
         for(int i = 0; i < nums.size(); i++){
             System.out.printf("Element at index %d: %d\n", i, nums.get(i));
         }
 
-        swapElements(nums, 0, nums.size() - 1);
+        shuffleList(nums);
+
         System.out.println();
         for (int i = 0; i < nums.size(); i++) {
             System.out.printf("Element at index %d: %d\n", i, nums.get(i));
@@ -20,6 +24,15 @@ public class Shuffles {
     }
 
     public static void shuffleList(ArrayList<Integer> list){
+        // start at the last element
+        // generate a random index value 0 - last element exclusive
+        // swap the last element with the value at the random index
+        // decrement control variable that tracks our position
+        // repeat until the control variable goes through index 1
+        for(int i = list.size() - 1; i > 0; i--){
+            int randPos = (int)(Math.random() * i);
+            swapElements(list, randPos, i);
+        }
 
     }
 
