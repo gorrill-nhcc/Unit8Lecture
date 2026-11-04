@@ -15,8 +15,31 @@ package card;
  */
 public class Card {
     // instance variables
+    private final Suit SUIT;
+    private final Rank RANK;
 
     // Constructors
+    public Card(Suit suit, Rank rank){
+        SUIT = suit;
+        RANK = rank;
+    }
 
-    // builder method
+    public int getRankValue(){
+        return RANK.getValue();
+    }
+    
+    public String getRankString(){
+        String rankStr = RANK.toString();
+        rankStr = rankStr.toLowerCase();
+        rankStr = rankStr.substring(0, 1).toUpperCase() + rankStr.substring(1);
+        return rankStr;
+    }
+
+    public String getSuitString(){
+        return SUIT.toString().substring(0, 1) + SUIT.toString().substring(1).toLowerCase();
+    }
+
+    public String toString(){
+        return getSuitString() + " of " + getRankString();
+    }
 }
